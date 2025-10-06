@@ -1,50 +1,85 @@
 <?php
+// -------------------------
+// 1. JSON-Daten laden
+// -------------------------
+$jsonData = '[{
+    "latitude": 46.94,
+    "longitude": 7.44,
+    "current": {
+        "time": "2025-10-06T09:30",
+        "temperature_2m": 10.7,
+        "rain": 0,
+        "weather_code": 2
+    }
+}]';
 
-/* ============================================================================
-   HANDLUNGSANWEISUNG (transform.php)
-   0) Schau dir die Rohdaten genau an und plane exakt, wie du die Daten umwandeln möchtest (auf Papier)
-   1) Binde extract.php ein und erhalte das Rohdaten-Array.
-   2) Definiere Mapping Koordinaten → Anzeigename (z. B. Bern/Chur/Zürich).
-   3) Konvertiere Einheiten (z. B. °F → °C) und runde sinnvoll (Celsius = (Fahrenheit - 32) * 5 / 9).
-   4) Leite eine einfache "condition" ab (z. B. sonnig/teilweise bewölkt/bewölkt/regnerisch).
-   5) Baue ein kompaktes, flaches Array je Standort mit den Ziel-Feldern.
-   6) Optional: Sortiere die Werte (z. B. nach Zeit), entferne irrelevante Felder.
-   7) Validiere Pflichtfelder (location, temperature_celsius, …).
-   8) Kodieren: json_encode(..., JSON_PRETTY_PRINT) → JSON-String.
-   9) GIB den JSON-String ZURÜCK (return), nicht ausgeben – für den Load-Schritt.
-  10) Fehlerfälle als Exception nach oben weiterreichen (kein HTML/echo).
-   ============================================================================ */
+$dataArray = json_decode($jsonData, true);
 
-// Bindet das Skript extract.php für Rohdaten ein und speichere es in $data
-$data = include('extract.php');
-
-// Definiert eine Zuordnung von Koordinaten zu Stadtnamen
-$locationsMap = [
-    '46.94,7.44' => 'Bern',
-    '46.84,9.52' => 'Chur',
-    '47.36,8.559999' => 'Zürich',
-];
-
-// Funktion, um Fahrenheit in Celsius umzurechnen
-
-// Neue Funktion zur Bestimmung der Wetterbedingung
-
-
-
-// Initialisiert ein Array, um die transformierten Daten zu speichern
-$transformedData = [];
-
-// Transformiert und fügt die notwendigen Informationen hinzu
-foreach ($data as $location) {
-    // Bestimmt den Stadtnamen anhand von Breitengrad und Längengrad
-
-    // Wandelt die Temperatur in Celsius um und rundet sie
-
-    // Bestimmt die Wetterbedingung
-
-    // Konstruiert die neue Struktur mit allen angegebenen Feldern, einschließlich des neuen 'condition'-Feldes
+// -------------------------
+// 2. Hilfsfunktionen
+// -------------------------
+function convertFahrenheitToCelsius($f) {
+    return ($f - 32) * 5 / 9;
 }
 
-// Kodiert die transformierten Daten in JSON
+function getLocationFromCoords($lat, $lon) {
+    $lat = round($lat, 2);
+    $lon = round($lon, 2);
 
-// Gibt die JSON-Daten zurück, anstatt sie auszugeben
+    if ($lat >= 46.9 && $lat <= 47.0 && $lon >= 7.4 && $lon <= 7.5) {
+        return "Bern";
+    } elseif ($lat >= 46.8 && $lat <= 46.9 && $lon >= 9.5 && $lon <= 9.6) {
+        return "Chur";
+    } elseif ($lat >= 47.3 && $lat <= 47.4 && $lon >= 8.5 && $lon <= 8.6) {
+        return "Zürich";
+    } else {
+        return "Unbekannt";
+    }
+}
+
+function mapWeatherCode($code) {
+    switch ($code) {
+        case 0: return "sonnig";
+        case 1: return "teilweise bewölkt";
+        case 2: return "bewölkt";
+        case 3: return "regnerisch";
+        case 4: return "schneit";
+        default: return "unbekannt";
+    }
+}
+
+// -------------------------
+// 3. Datenbankverbindung (PDO)
+// -------------------------
+require_once 'config.php';
+try {
+    $pdo = new PDO($dsn, $username, $password, $options);
+} catch (PDOException $e) {
+    die("Datenbankverbindung fehlgeschlagen: " . $e->getMessage());
+}
+
+// -------------------------
+// 4. Transformation & Insert
+// -------------------------
+foreach ($dataArray as $item) {
+    $transformedData = [
+        'ort' => getLocationFromCoords($item['latitude'], $item['longitude']),
+        'temperatur' => round($item['current']['temperature_2m'], 2), // ggf. convertFahrenheitToCelsius()
+        'niederschlag' => round($item['current']['rain'], 2),
+        'weather_code' => mapWeatherCode($item['current']['weather_code']),
+        'created_at' => date('Y-m-d H:i:s')
+    ];
+
+    // Insert in Datenbank
+    $sql = "INSERT INTO `Wetter-Tagebuch` (ort, temperatur, niederschlag, weather_code)
+            VALUES (:ort, :temperatur, :niederschlag, :weather_code)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':ort' => $transformedData['ort'],
+        ':temperatur' => $transformedData['temperatur'],
+        ':niederschlag' => $transformedData['niederschlag'],
+        ':weather_code' => $transformedData['weather_code']
+    ]);
+}
+
+echo "Daten erfolgreich transformiert und eingetragen!";

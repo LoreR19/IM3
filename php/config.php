@@ -5,7 +5,7 @@ $host     = '4k6vvp.myd.infomaniak.com';     // Hostserver, auf dem die DB läuf
 // «localhost» bedeutet: die selbe Serveradresse, auf dem auch die Seiten gespeichert sind
 
 $dbname   = '4k6vvp_im_3';   // Name der Datenbank
-$username = '4k6vvp_im_3';   // Benutzername für die DB
+$username = '4k6vvp_im3user';   // Benutzername für die DB
 $password = 'IM3mmp2024loundla?!';   // Passwort für die DB
 
 
