@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 ### AL ###
 #Template for AL projects for Dynamics 365 Business Central
 #launch.json folder
@@ -21,4 +25,8 @@ rad.json
 #Test results file
 TestResults.xml
 *.sftp.json
+<<<<<<< Updated upstream
 *config.php
+=======
+*config.php
+>>>>>>> Stashed changes
