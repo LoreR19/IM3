@@ -26,9 +26,6 @@ rad.json
 TestResults.xml
 *.sftp.json
 php/config.php
-<<<<<<< Updated upstream
 */config.php
-=======
-*config.php
->>>>>>> Stashed changes
 php/config.php
+config.php
