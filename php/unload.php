@@ -13,7 +13,21 @@
   10) Keine HTML-Ausgabe; keine var_dump in Prod.
    ============================================================================ */
 
+require_once 'config.php'; // Stellen Sie sicher, dass dies auf Ihre tatsächliche Konfigurationsdatei verweist
+header('Content-Type: application/json;charset=utf-8');
+$sqls = ["",""];
 
-require_once '../config.php'; // Stellen Sie sicher, dass dies auf Ihre tatsächliche Konfigurationsdatei verweist
+// dsn = Wohin musst du und wie heisst die Datenbank?
+try { 
+   $pdo = new PDO($dsn, $username, $password, $options);
+   $sql = "SELECT * FROM `Wetter-Tagebuch`";
 
-header('Content-Type: application/json');
+   $stmt = $pdo->prepare($sql);
+   $stmt-> execute();
+
+   $data = $stmt -> fetchAll();
+
+   echo json_encode($data); 
+} catch (PDOException $e) {
+   echo json_encode (['error' => $e->getMessage()]);
+}

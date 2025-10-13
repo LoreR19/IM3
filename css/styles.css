@@ -1,0 +1,97 @@
+body {
+    background-color: #f9f0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    
+  }
+  
+  /* Container zentriert und Spaltenlayout */
+  .container {
+    display: flex;
+    flex-direction: column; /* alles untereinander */
+    align-items: center; /* horizontal mittig */
+    justify-content: center; /* vertikal mittig */
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 1000px;
+    width: 100%;
+    overflow: hidden;
+    gap: 2rem; /* gleichmäßiger Abstand zwischen allen Elementen */
+  }
+  
+  /* Überschrift */
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
+  
+  /* Datumseingabe */
+  .input-group {
+    position: relative;
+  }
+  
+  input[type="date"] {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  /* Buttons nebeneinander, zentriert */
+  .buttons {
+    display: flex;
+    flex-direction: row; /* nebeneinander */
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Abstand zwischen Buttons */
+  }
+  
+  .city-button {
+    background: transparent;
+    border: 1.5px solid #000;
+    border-radius: 999px;
+    padding: 0.6rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .city-button:hover {
+    background: #000;
+    color: #fff;
+  }
+  
+  /* Refresh-Button */
+  #refresh-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  #refresh-button:hover {
+    background-color: #333;
+  }
+  
+  /* Wetteranzeige unten */
+  #wetter-anzeige,
+  #temperatur-anzeige {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+
+  

@@ -16,38 +16,49 @@
 
 function fetchWeatherData()
 {
-    $url = "https://api.open-meteo.com/v1/forecast?latitude=46.9481&longitude=7.4474&current=temperature_2m,relative_humidity_2m,rain,weather_code";
+    $urls = ["https://api.open-meteo.com/v1/forecast?latitude=46.9481&longitude=7.4474&current=temperature_2m,relative_humidity_2m,rain,weather_code", "https://api.open-meteo.com/v1/forecast?latitude=47.3769&longitude=8.5417&current=temperature_2m,relative_humidity_2m,rain,weather_code"];
 
-    // Initialisiert eine cURL-Sitzung
-$ch = curl_init($url);
-    
-
-    // Setzt Optionen
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-
-    // Führt die cURL-Sitzung aus und erhält den Inhalt
-$response = curl_exec ($ch);
-
-// echo $response;
- // echo "<br><br>";
-// print_r($response);
-
-    // Schließt die cURL-Sitzung
-curl_close($ch);
-
-
-    // Dekodiert die JSON-Antwort und gibt Daten zurück
-    $data= json_decode($response,true);
-  
-  
-   // echo "<br><br>";
-   // echo($data);
-   // echo "<br><br>";
-   // print_r($data); 
-
-return $data;
-
+    // schleife für beide URL, um die Daten abzurufen und zu kombinieren als array
+    $data = [];
+    foreach ($urls as $url) {
+        $result = getCurlData($url);
+        if ($result !== null) {
+            $data[] = $result;
+        }
+    }
+    return $data;
 }
 
-// Gibt die Daten zurück, wenn dieses Skript eingebunden ist
-return fetchWeatherData();
+function getCurlData($url)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+    $response = curl_exec($ch);
+    if (curl_errno($ch)) {
+        error_log('cURL-Fehler: ' . curl_error($ch));
+        curl_close($ch);
+        return null;
+    }
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+    curl_close($ch);
+
+    if ($httpCode !== 200 || strpos($contentType, 'application/json') === false) {
+        error_log("Unerwarteter HTTP-Status oder Content-Type: $httpCode, $contentType");
+        return null;
+    }
+
+    $data = json_decode($response, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        error_log('JSON-Dekodierungsfehler: ' . json_last_error_msg());
+        return null;
+    }
+
+    return $data;
+}
+
+

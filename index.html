@@ -1,13 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Wetteranzeige</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Hello World</h1>
-    <script src="js/script.js"></script>
+
+   
+
+    <div class="container">
+        <h1>Wosch z Wätter wüsse?</h1>
+    
+        <div class="input-group">
+          <input type="date" name="datum" id="datum">
+        </div>
+    
+        <div class="buttons">
+          <button class="city-button" data-ort="Bern" id="bern">Bern</button>
+          <button class="city-button" data-ort="Zürich" id="zuerich">Zürich</button>
+        </div>
+    
+        <div id="wetter-anzeige"></div>
+        <div id="temperatur-anzeige"></div>
+      </div>
+    
+  
+      
+
+   
+
+
+  </div>
+
+
+  <!-- Bitte Hier lassen -->
+  <script src="js/script.js" type="module"></script>
 </body>
 </html>
