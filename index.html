@@ -7,7 +7,8 @@
 </head>
 <body>
 
-   
+<!--Startseite-->
+
 
     <div class="container">
         <h1>Wosch z Wätter wüsse?</h1>
@@ -21,18 +22,33 @@
           <button class="city-button" data-ort="Zürich" id="zuerich">Zürich</button>
         </div>
     
-        <div id="wetter-anzeige"></div>
-        <div id="temperatur-anzeige"></div>
       </div>
     
+    
+    <!--Detail Anzeige-->
+
+    <div id="weather-card">
+    
+    <div id="background-image">
+      <div class="top-bar">
+        <div class="top-left">
+            <span class="date" id="weatherDate">5. April</span>
+            <button class="zuruck-btn" id="backBtn">Zurück</button>
+        </div>
+        <span class="location" id="cityName">Bern</span>
+      </div>
+
+    
+     <div class="bottom-bar">
+        <div class="text" id="wetter-anzeige">
+          <h2 id="wetter-anzeige-text"></h2>
+        </div>
+        <div class="temp" id="temperatur-anzeige">
+          <span id="temperatur-anzeige-text">12°C</span>
+        </div>
+      </div>
+    </div>
   
-      
-
-   
-
-
-  </div>
-
 
   <!-- Bitte Hier lassen -->
   <script src="js/script.js" type="module"></script>

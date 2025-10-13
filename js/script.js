@@ -1,8 +1,16 @@
+const spruecheMap = new Map();
+
+spruecheMap.set('regnerisch', 'Hüt isches\r\nam regne!');
+spruecheMap.set('sonnig', 'Hüt isches\r\nsonnig!');
+spruecheMap.set('bewölkt', 'Hüt isches\r\nbewölkt!');
+spruecheMap.set('teilweise bewölkt', 'Hüt isches\r\nbewölkt!');
+spruecheMap.set('schnee', 'Hüt isches\r\nam schnee!');
+
 const datumWaehler = document.querySelector('#datum');
 const temperaturAnzeige = document.querySelector('#temperatur-anzeige');
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.body.style.backgroundImage = "url('homepage.svg')";
+    document.body.style.backgroundImage = "url('../img/Homepage.png')";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
 });
@@ -24,12 +32,12 @@ cityButtons.forEach(button => {
 });
 
 // datumWaehler remains unchanged
-datumWaehler.addEventListener('change', async () => {
-    console.log(datumWaehler.value);
-    const daten = await datenLaden();
-    const selectedCity = document.querySelector('.city-button.active')?.dataset.ort || 'Bern'; // Default to Bern
-    anzeigenDaten(daten, selectedCity, datumWaehler.value);
-});
+// datumWaehler.addEventListener('change', async () => {
+//     console.log(datumWaehler.value);
+//     const daten = await datenLaden();
+//     const selectedCity = document.querySelector('.city-button.active')?.dataset.ort || 'Bern'; // Default to Bern
+//     anzeigenDaten(daten, selectedCity, datumWaehler.value);
+// });
 
 
 
@@ -56,6 +64,10 @@ async function datenLaden() {
 // Hier werden die Daten ins DOM (Frontend) geladen, damit der User sie sieht.
 
 function anzeigenDaten(daten, ort, datum) {
+    const temperaturAnzeigeText = document.getElementById('temperatur-anzeige-text');
+    const wetterAnzeigeText = document.getElementById('wetter-anzeige-text');
+    const cityNameDisplay = document.getElementById('cityName');
+    const weatherDateDisplay = document.getElementById('weatherDate');
     // Filter data for the selected city and date
     const wetterDaten = daten
         .filter(eintrag => eintrag.ort === ort && eintrag.timestamp.startsWith(datum))
@@ -63,8 +75,29 @@ function anzeigenDaten(daten, ort, datum) {
 
     if (wetterDaten.length > 0) {
         const aktuell = wetterDaten[0]; // Most recent entry
-        temperaturAnzeige.textContent = `${aktuell.temperatur} °C (${aktuell.weather_code})`;
+        
+        cityNameDisplay.textContent = ort;
+        weatherDateDisplay.textContent = new Date(aktuell.timestamp).toLocaleString('de-CH', {
+            day: '2-digit',
+            month: 'long', // This will display the month in full German text, e.g., "Januar"
+            year: '2-digit',
+        });
+
+
+        temperaturAnzeigeText.textContent = `${aktuell.temperatur} °C`;
+
+        wetterAnzeigeText.textContent = spruecheMap.get(aktuell.weather_code) || 'Wetter unbekannt';
+
+        
+
+        const weatherCard = document.getElementById('weather-card');
+        weatherCard.classList.add(aktuell.weather_code);
+        weatherCard.style.display = 'block';
+
     } else {
-        temperaturAnzeige.textContent = 'Keine Daten verfügbar';
+        // temperaturAnzeige.textContent = 'Keine Daten verfügbar';
+        temperaturAnzeigeText.textContent = 'Keine Daten verfügbar';
     }
 }
+
+
