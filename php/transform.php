@@ -30,10 +30,11 @@ function getLocationFromCoords($lat, $lon) {
 function mapWeatherCode($code) {
     switch ($code) {
         case 0: return "sonnig";
-        case 1: return "teilweise bewölkt";
-        case 2: return "bewölkt";
-        case 3: return "regnerisch";
-        case 4: return "schneit";
+        case 95, 96, 99: return "gewitter";
+        case 1, 2, 3: return "bewölkt";
+        case 51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82: return "regnerisch";
+        case 71, 73, 75, 77, 85, 86: return "schneit";
+        case 45, 48: return "neblig";
         default: return "unbekannt";
     }
 }

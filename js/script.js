@@ -4,10 +4,14 @@ spruecheMap.set('regnerisch', 'Hüt isches\r\nam regne!');
 spruecheMap.set('sonnig', 'Hüt isches\r\nsonnig!');
 spruecheMap.set('bewölkt', 'Hüt isches\r\nbewölkt!');
 spruecheMap.set('teilweise bewölkt', 'Hüt isches\r\nbewölkt!');
-spruecheMap.set('schnee', 'Hüt isches\r\nam schnee!');
+spruecheMap.set('schneit', 'Hüt isches\r\nam schnee!');
+spruecheMap.set('neblig', 'Hüt isches\r\nneblig!');
+spruecheMap.set('gewitter', 'Hüt isches\r\nam gwittere!');
 
 const datumWaehler = document.querySelector('#datum');
 const temperaturAnzeige = document.querySelector('#temperatur-anzeige');
+const backBtn = document.querySelector('#backBtn');
+
 
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.backgroundImage = "url('../img/Homepage.png')";
@@ -28,6 +32,7 @@ cityButtons.forEach(button => {
         const selectedCity = button.dataset.ort;
         const daten = await datenLaden();
         anzeigenDaten(daten, selectedCity, datumWaehler.value);
+        
     });
 });
 
@@ -68,6 +73,10 @@ function anzeigenDaten(daten, ort, datum) {
     const wetterAnzeigeText = document.getElementById('wetter-anzeige-text');
     const cityNameDisplay = document.getElementById('cityName');
     const weatherDateDisplay = document.getElementById('weatherDate');
+    
+  
+
+
     // Filter data for the selected city and date
     const wetterDaten = daten
         .filter(eintrag => eintrag.ort === ort && eintrag.timestamp.startsWith(datum))
@@ -83,6 +92,7 @@ function anzeigenDaten(daten, ort, datum) {
             year: '2-digit',
         });
 
+    
 
         temperaturAnzeigeText.textContent = `${aktuell.temperatur} °C`;
 
@@ -91,13 +101,28 @@ function anzeigenDaten(daten, ort, datum) {
         
 
         const weatherCard = document.getElementById('weather-card');
+        weatherCard.className = '';
         weatherCard.classList.add(aktuell.weather_code);
-        weatherCard.style.display = 'block';
+        weatherCard.style.display = 'block'; 
+        document.querySelector('.container').style.display = 'none'; // Startseite ausblenden
+        
+
+        
+        
 
     } else {
         // temperaturAnzeige.textContent = 'Keine Daten verfügbar';
         temperaturAnzeigeText.textContent = 'Keine Daten verfügbar';
-    }
+    }  
 }
+
+
+
+// "Zurück"-Button Funktion
+backBtn.addEventListener('click', () => {
+    document.getElementById('weather-card').style.display = 'none'; // Detailseite ausblenden
+    document.querySelector('.container').style.display = 'flex'; // Startseite ausblenden
+});
+
 
 
