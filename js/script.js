@@ -13,11 +13,6 @@ const temperaturAnzeige = document.querySelector('#temperatur-anzeige');
 const backBtn = document.querySelector('#backBtn');
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.style.backgroundImage = "url('../img/Homepage.png')";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-});
 
 // datumWahler auf heute setzen
 // 

@@ -1,4 +1,13 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
 body {
+   
+    background-image: url('../img/Homepage.png');
+    background-size: cover;
+    background-position: center;
     background-color: #f9f0e0;
      z-index: 1;
     display: flex;
@@ -12,15 +21,15 @@ body {
   /* Container zentriert und Spaltenlayout */
   .container {
     display: flex;
-    flex-direction: column; /* alles untereinander */
-    align-items: center; /* horizontal mittig */
-    justify-content: center; /* vertikal mittig */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
     text-align: center;
     padding: 4rem 2rem;
     max-width: 1000px;
     width: 100%;
     overflow: hidden;
-    gap: 2rem; /* gleichmäßiger Abstand zwischen allen Elementen */
+    gap: 2rem; 
   }
   
   /* Überschrift */
@@ -95,7 +104,7 @@ body {
 }
 
 .top-bar {
-    height: 45vh;
+    height: 50vh;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -111,7 +120,7 @@ body {
 .date {
 color: #000;
 font-family: "Poppins", sans-serif;
-font-size: 40px;
+font-size: 2.5rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -120,7 +129,7 @@ line-height: normal;
 .location {
 color: #000;
 font-family: "Poppins", sans-serif;
-font-size: 40px;
+font-size: 2.5rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -145,13 +154,13 @@ line-height: normal;
 .backBtn {
     color: #000;
     font-family: Montserrat;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;}
 
 .bottom-bar {
-    height: 45vh;
+    height: 50vh;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -161,7 +170,7 @@ line-height: normal;
 #wetter-anzeige h2 {
     color: #000;
     font-family: "Poppins", sans-serif;
-    font-size: 64px;
+    font-size: 4rem;
     font-style: normal;
     font-weight: 700;
     line-height: 50px;
@@ -170,7 +179,7 @@ line-height: normal;
   }
 
   #temperatur-anzeige-text {
-    font-size: 39px;
+    font-size: 2.5rem;
     font-weight: 400;
     color: #000;
     font-family: "Poppins", sans-serif;
@@ -181,37 +190,188 @@ line-height: normal;
 #weather-card.regnerisch > #background-image {
    background-image: url('../img/regnerisch.png');
     background-size: cover;
+    background-position: center;
     z-index: 1;
 } 
 
 #weather-card.bewölkt > #background-image {
     background-image: url('../img/wolkig.png');
      background-size: cover;
+     background-position: center;
      z-index: 1;
  } 
 
  #weather-card.schnee > #background-image {
     background-image: url('../img/schnee.png');
      background-size: cover;
+     background-position: center;
      z-index: 1;
  } 
 
  #weather-card.sonnig > #background-image {
     background-image: url('../img/sonnig.png');
      background-size: cover;
+     background-position: center;
      z-index: 1;
  } 
 
  #weather-card.gewitter > #background-image {
     background-image: url('../img/gewitter.png');
      background-size: cover;
+     background-position: center;
      z-index: 1;
  } 
 
  #weather-card.sturm > #background-image {
     background-image: url('../img/sturm.png');
      background-size: cover;
+     background-position: center;
      z-index: 1;
  } 
 
+/* ======= Responsive Design ======= */
 
+@media (max-width: 640px){
+
+    body {
+   
+        background-image: url('../img/reshome.png');
+        background-size: cover;
+        background-position: center;
+
+      }
+
+    h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        color: #000;
+        margin: 0;
+      }
+    
+      /* Wetteranzeige unten */
+      #wetter-anzeige {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        text-align: center;
+      }
+    
+      #temperatur-anzeige {
+        margin-top: 1rem;
+      }
+    
+    /* Detail Seite */
+    
+  
+    
+    .date {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+    
+    .location {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+    
+    .zuruck-btn {
+        background: transparent;
+        border: 1.5px solid #000;
+        border-radius: 999px;
+        padding: 0.5rem 0.3rem;
+        margin-top: -0.3rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+      
+    .zuruck-btn:hover {
+        background: #000;
+        color: #fff;
+    }    
+    
+    .backBtn {
+        color: #000;
+        font-family: Montserrat;
+        font-size: 0.9rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;}
+    
+    
+    #wetter-anzeige h2 {
+        color: #000;
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 2rem;
+        margin-bottom: 0;
+        white-space: pre;
+      }
+    
+      #temperatur-anzeige-text {
+        font-size: 2.1rem;
+        font-weight: 400;
+        color: #000;
+        font-family: "Poppins", sans-serif;
+      }
+    
+    /* Hintergrundbilder für verschiedene Wetterbedingungen */
+    
+    #weather-card.regnerisch > #background-image {
+       background-image: url('../img/resregen.png');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+    } 
+    
+    #weather-card.bewölkt > #background-image {
+        background-image: url('../img/reswolke.png');
+         background-size: cover;
+         background-position: center;
+         z-index: 1;
+     } 
+    
+     #weather-card.schnee > #background-image {
+        background-image: url('../img/resschnee.png');
+         background-size: cover;
+         background-position: center;
+         z-index: 1;
+     } 
+    
+     #weather-card.sonnig > #background-image {
+        background-image: url('../img/ressonne.png');
+         background-size: cover;
+         background-position: center;
+         z-index: 1;
+     } 
+    
+     #weather-card.gewitter > #background-image {
+        background-image: url('../img/resgewitter.png');
+         background-size: cover;
+         background-position: center;
+         z-index: 1;
+     } 
+    
+     #weather-card.sturm > #background-image {
+        background-image: url('../img/ressturm.png');
+         background-size: cover;
+         background-position: center;
+         z-index: 1;
+     } 
+
+
+
+
+
+}
