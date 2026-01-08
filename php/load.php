@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/cors.php';
+
 include_once('config.php');
 // Transformations-Skript als 'transform.php' einbinden und Ergebnis zuweisen
 $transformedData = include('transform.php');
