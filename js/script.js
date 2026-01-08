@@ -4,7 +4,7 @@ spruecheMap.set('regnerisch', 'Hüt isches\r\nam regne!');
 spruecheMap.set('sonnig', 'Hüt isches\r\nsonnig!');
 spruecheMap.set('bewölkt', 'Hüt isches\r\nbewölkt!');
 spruecheMap.set('teilweise bewölkt', 'Hüt isches\r\nbewölkt!');
-spruecheMap.set('schneit', 'Hüt isches\r\nam schnee!');
+spruecheMap.set('schneit', 'Hüt isches\r\nam schneeie!');
 spruecheMap.set('neblig', 'Hüt isches\r\nneblig!');
 spruecheMap.set('gewitter', 'Hüt isches\r\nam gwittere!');
 
