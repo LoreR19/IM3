@@ -219,7 +219,7 @@ line-height: normal;
      z-index: 1;
  } 
 
- #weather-card.schnee > #background-image {
+ #weather-card.schneit > #background-image {
     background-image: url('../img/schnee.png');
      background-size: cover;
      background-position: center;
@@ -360,7 +360,7 @@ line-height: normal;
          z-index: 1;
      } 
     
-     #weather-card.schnee > #background-image {
+     #weather-card.schneit > #background-image {
         background-image: url('../img/resschnee.png');
          background-size: cover;
          background-position: center;

@@ -1,12 +1,19 @@
 const spruecheMap = new Map();
 
-spruecheMap.set('regnerisch', 'Hüt isches\r\nam regne!');
-spruecheMap.set('sonnig', 'Hüt isches\r\nsonnig!');
-spruecheMap.set('bewölkt', 'Hüt isches\r\nbewölkt!');
-spruecheMap.set('teilweise bewölkt', 'Hüt isches\r\nbewölkt!');
-spruecheMap.set('schneit', 'Hüt isches\r\nam schnee!');
-spruecheMap.set('neblig', 'Hüt isches\r\nneblig!');
-spruecheMap.set('gewitter', 'Hüt isches\r\nam gwittere!');
+spruecheMap.set('regnerisch', `Hüt isches
+am regne!`);
+spruecheMap.set('sonnig', `Hüt isches
+sonnig!`);
+spruecheMap.set('bewölkt', `Hüt isches
+bewölkt!`);
+spruecheMap.set('teilweise bewölkt', `Hüt isches
+bewölkt!`);
+spruecheMap.set('schneit', `Hüt isches
+am schnee!`);
+spruecheMap.set('neblig', `Hüt isches
+neblig!`);
+spruecheMap.set('gewitter', `Hüt isches
+am gwittere!`);
 
 const datumWaehler = document.querySelector('#datum');
 const temperaturAnzeige = document.querySelector('#temperatur-anzeige');
@@ -16,8 +23,13 @@ const backBtn = document.querySelector('#backBtn');
 
 // datumWahler auf heute setzen
 // 
-const heute = new Date().toISOString().split('T')[0];
-datumWaehler.value = heute;
+const heute = new Date();
+
+if (heute.getFullYear() === 2025) {
+  datumWaehler.value = heute.toISOString().split('T')[0];
+} else {
+  datumWaehler.value = '2025-01-01';
+}
 
 // Remove ortWaehler and add event listeners for city buttons
 const cityButtons = document.querySelectorAll('.city-button');
