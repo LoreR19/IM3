@@ -3,34 +3,46 @@
     box-sizing: border-box;
   }
 
+  /* ===== Video Hintergrund & Fallback ===== */
+
 body {
-   
-    background-image: url('../img/Animation.mp4');
-    background-size: cover;
-    background-position: center;
-    background-color: #f9f0e0;
-     z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-  }
-  
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f9f0e0;
+}
+
+/* Video im Hintergrund */
+.bg-video {
+ position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -10;
+}
+
+/* Alles andere liegt über dem Video */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
   /* Container zentriert und Spaltenlayout */
   .container {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+  
     padding: 4rem 2rem;
     max-width: 1000px;
     width: 100%;
-    overflow: hidden;
-    gap: 2rem; 
+    margin: 0 auto;
+    gap: 2rem;
   }
+  
   
   /* Überschrift */
   h1 {
@@ -101,6 +113,12 @@ body {
     width: 100%;
     height: 100vh;
     display: none;
+    background: transparent;
+}
+#background-image {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
 }
 
 .top-bar {
@@ -369,9 +387,6 @@ line-height: normal;
          background-position: center;
          z-index: 1;
      } 
-
-
-
 
 
 }
