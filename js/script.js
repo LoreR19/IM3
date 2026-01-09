@@ -9,7 +9,7 @@ bewölkt!`);
 spruecheMap.set('teilweise bewölkt', `Hüt isches
 bewölkt!`);
 spruecheMap.set('schneit', `Hüt isches
-am schnee!`);
+am schneeie!`);
 spruecheMap.set('neblig', `Hüt isches
 neblig!`);
 spruecheMap.set('gewitter', `Hüt isches
