@@ -9,6 +9,14 @@ Auf der Website wird unter anderem die Temperatur, der Wetterzustand und das Dat
 Während des Projekts kam es leider zu einem Datenverlust, wodurch wir unser Projekt teilweise neu aufsetzen und retten mussten. Gemeinsam mit Beni konnten wir eine Lösung finden, damit zumindest ein Teil der Daten weiterhin abrufbar bleibt. Dadurch ist es im aktuellen Stand so, dass man nur die Daten vom Jahr 2025 anzeigen lassen kann. Wir haben versucht, das Projekt so gut wie möglich zu retten und dennoch eine funktionierende, nachvollziehbare Wetteranzeige abzugeben.
 Ursprünglich hatten wir geplant, die Inhalte über eine Swipe-Funktion darzustellen. Nach Feedback von den Dozierenden haben wir uns jedoch bewusst dagegen entschieden, da dies den Fokus zu stark auf die Interaktion und weniger auf die Daten und den technischen Aufbau gelegt hätte.
 
+Damit es für die Dozierenden praktischer ist, das Projekt anzuschauen, sind hier einige Vorgeschlagene Daten:
+
+20. Oktober 2025 Bern - Regen 
+1. Januar 2025 Bern - Bewölkt 
+7. Januar 2025 Bern - Schnee
+19. Juni 2025 Bern - Sonnig 
+
+
 **Technischer Aufbau**
 •	Abruf von Wetterdaten über eine externe Wetter-API
 •	Verarbeitung der Daten mit JavaScript
