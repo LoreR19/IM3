@@ -13,8 +13,10 @@
   10) Keine HTML-Ausgabe; keine var_dump in Prod.
    ============================================================================ */
 
-require_once 'config.php'; // Stellen Sie sicher, dass dies auf Ihre tatsächliche Konfigurationsdatei verweist
-header('Content-Type: application/json;charset=utf-8');
+require_once __DIR__ . '/cors.php';
+header('Content-Type: application/json; charset=utf-8');
+
+require_once __DIR__ . '/config.php'; // Stellen Sie sicher, dass dies auf Ihre tatsächliche Konfigurationsdatei verweist
 $sqls = ["",""];
 
 // dsn = Wohin musst du und wie heisst die Datenbank?
@@ -27,7 +29,8 @@ try {
 
    $data = $stmt -> fetchAll();
 
-   echo json_encode($data); 
+   echo json_encode($data);
 } catch (PDOException $e) {
-   echo json_encode (['error' => $e->getMessage()]);
+   http_response_code(500);
+   echo json_encode(['error' => 'Database error.']);
 }
